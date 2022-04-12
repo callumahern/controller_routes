@@ -23,12 +23,20 @@
   </div>
 
   <div>
-  <h3>Or create a new question:</h3>
+  <h3>Now create a new question:</h3>
   <%= f.fields_for :questions do |question_attributes|%>
       <%= question_attributes.label :question, "Enter your question:" %>
       <%= question_attributes.text_field :question %>
+  </div>
+
+    <div>
+    <h3>And add your answer!:</h3>
+    <%= question_attributes.fields_for :answers do |answer_attributes|%>
+        <%= answer_attributes.label :answer_title, "Enter your answer:" %>
+        <%= answer_attributes.text_field :answer_title %>
+    <% end %>
+    </div>
   <% end %>
-</div>
 
   <div class="actions">
     <%= f.submit %>
