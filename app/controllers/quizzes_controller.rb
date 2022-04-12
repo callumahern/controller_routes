@@ -13,6 +13,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes/new
   def new
     @quiz = Quiz.new
+    @quiz.questions.new
   end
 
   # GET /quizzes/1/edit
@@ -22,6 +23,7 @@ class QuizzesController < ApplicationController
   # POST /quizzes or /quizzes.json
   def create
     @quiz = Quiz.new(quiz_params)
+    @quiz.questions
 
     respond_to do |format|
       if @quiz.save
@@ -66,9 +68,7 @@ class QuizzesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def quiz_params
       params.require(:quiz).permit(:title, :summary,
-        :questions_attributes => [:id, :question,
-          :choices_attributes => [:id, :answer_title, :correct_anwer]
-        ]
+        :questions_attributes => [:id, :question]
       )
     end
 end

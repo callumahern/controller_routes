@@ -1,4 +1,4 @@
-<%= form_with(model: quiz) do |form| %>
+<%= form_for(@quiz) do |f| %>
   <% if quiz.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(quiz.errors.count, "error") %> prohibited this quiz from being saved:</h2>
@@ -13,17 +13,24 @@
   
 
   <div>
-    <%= form.label :title, class: "form-label-group" %> 
-    <%= form.text_field :title, class: 'form-control' %>
+    <%= f.label :title, class: "form-label-group" %> 
+    <%= f.text_field :title, class: 'form-control' %>
   </div>
 
   <div>
-    <%= form.label :summary, class: "form-label-group"  %> 
-    <%= form.text_field :summary, class: 'form-control' %>
+    <%= f.label :summary, class: "form-label-group"  %> 
+    <%= f.text_field :summary, class: 'form-control' %>
   </div>
 
+  <div>
+  <h3>Or create a new question:</h3>
+  <%= f.fields_for :questions do |question_attributes|%>
+      <%= question_attributes.label :question, "Enter your question:" %>
+      <%= question_attributes.text_field :question %>
+  <% end %>
+</div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit %>
   </div>
 <% end %>
