@@ -10,7 +10,17 @@
       </ul>
     </div>
   <% end %>
+  
 
+  <div>
+    <%= form.label :title, class: "form-label-group" %> 
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.label :summary, class: "form-label-group"  %> 
+    <%= form.text_field :summary, class: 'form-control' %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>
